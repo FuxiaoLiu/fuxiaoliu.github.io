@@ -1,486 +1,559 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<meta  http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0" />
-	<link rel="stylesheet" type="text/css" href="webpage/bootstrap.min.css"/>
-    <script language="javascript" src="webpage/jquery.min.js"></script>
-	<script language="javascript" src="webpage/bootstrap.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fuxiao Liu</title>
+  <meta name="description" content="Fuxiao Liu – Research Scientist at NVIDIA, PhD from UMD" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@700&display=swap" rel="stylesheet" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-156016426-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-156016426-1');
+  </script>
 
-	<link rel="stylesheet" type="text/css" href="webpage/cssReset.css"/>
-	<title>Fuxiao Liu</title>
-	<meta name="description" content="Personal website for Fuxiao liu at University of Maryland">
-	<meta name="keywords" content="Fuxiao Liu,UMD,computer vision, PhD">
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-156016426-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --accent:   #2563eb;
+      --accent2:  #1d4ed8;
+      --bg:       #f8fafc;
+      --surface:  #ffffff;
+      --border:   #e2e8f0;
+      --text:     #1e293b;
+      --muted:    #64748b;
+      --badge-bg: #eff6ff;
+      --badge-fg: #1d4ed8;
+      --radius:   12px;
+      --shadow:   0 1px 4px rgba(0,0,0,.07), 0 4px 16px rgba(0,0,0,.06);
+      --max-w:    860px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--bg);
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { display: block; max-width: 100%; }
 
-  gtag('config', 'UA-156016426-1');
-</script>
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav .inner {
+      max-width: var(--max-w); margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px; height: 52px;
+    }
+    nav .brand { font-weight: 700; font-size: 1.05rem; color: var(--text); }
+    nav .links { display: flex; gap: 28px; }
+    nav .links a { font-size: .88rem; font-weight: 500; color: var(--muted); transition: color .2s; }
+    nav .links a:hover { color: var(--accent); text-decoration: none; }
 
+    /* ── Page wrapper ── */
+    .page { max-width: var(--max-w); margin: 0 auto; padding: 0 24px 80px; }
+
+    /* ── Hero / Bio ── */
+    .hero {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 36px;
+      align-items: start;
+      padding: 52px 0 40px;
+    }
+    .hero-photo {
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    .hero-info h1 { font-size: 2rem; font-weight: 700; line-height: 1.2; margin-bottom: 4px; }
+    .hero-info .zh { font-size: 1.1rem; color: var(--muted); margin-bottom: 14px; }
+    .hero-info p { color: var(--muted); font-size: .95rem; margin-bottom: 10px; }
+    .hero-info p strong { color: var(--text); }
+    .social-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .social-links a {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 5px 13px; border-radius: 20px;
+      border: 1px solid var(--border);
+      font-size: .82rem; font-weight: 500; color: var(--text);
+      background: var(--surface);
+      transition: border-color .2s, background .2s;
+    }
+    .social-links a:hover { border-color: var(--accent); background: var(--badge-bg); text-decoration: none; }
+
+    /* ── Section heading ── */
+    .section-title {
+      font-size: 1.25rem; font-weight: 700;
+      margin: 52px 0 22px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--accent);
+      color: var(--text);
+    }
+
+    /* ── Experience timeline ── */
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+    .tl-item {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 0 20px;
+      position: relative;
+    }
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: 90px; top: 22px; bottom: -8px;
+      width: 1px; background: var(--border);
+    }
+    .tl-item:last-child::before { display: none; }
+    .tl-date {
+      text-align: right; padding-top: 16px;
+      font-size: .78rem; font-weight: 600;
+      color: var(--muted); white-space: nowrap;
+    }
+    .tl-body {
+      padding: 16px 0 24px 20px;
+      border-left: none;
+      position: relative;
+    }
+    .tl-body::before {
+      content: '';
+      position: absolute; left: -4px; top: 22px;
+      width: 9px; height: 9px;
+      border-radius: 50%; background: var(--accent);
+      border: 2px solid var(--bg);
+    }
+    .tl-body .org { font-weight: 600; font-size: .95rem; }
+    .tl-body .desc { font-size: .9rem; color: var(--muted); margin-top: 2px; }
+    .tl-body .desc a { color: var(--accent); }
+    .badge {
+      display: inline-block; padding: 1px 8px; border-radius: 10px;
+      font-size: .75rem; font-weight: 600;
+      background: var(--badge-bg); color: var(--badge-fg);
+      margin-left: 6px; vertical-align: middle;
+    }
+
+    /* ── Publication cards ── */
+    .pub-list { display: flex; flex-direction: column; gap: 20px; }
+    .pub-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 20px;
+      align-items: start;
+      transition: box-shadow .2s, border-color .2s;
+    }
+    .pub-card:hover { box-shadow: 0 4px 20px rgba(37,99,235,.12); border-color: var(--accent); }
+    .pub-thumb {
+      width: 160px; height: 110px;
+      object-fit: cover;
+      border-radius: 8px;
+      background: var(--border);
+    }
+    .pub-venue {
+      display: inline-block;
+      font-size: .75rem; font-weight: 700;
+      padding: 2px 9px; border-radius: 10px;
+      background: var(--badge-bg); color: var(--badge-fg);
+      margin-bottom: 6px;
+    }
+    .pub-title { font-weight: 600; font-size: .97rem; line-height: 1.4; margin-bottom: 6px; }
+    .pub-authors { font-size: .83rem; color: var(--muted); margin-bottom: 8px; }
+    .pub-authors strong { color: var(--text); }
+    .pub-links { display: flex; gap: 8px; flex-wrap: wrap; }
+    .pub-links a {
+      font-size: .78rem; padding: 3px 10px;
+      border: 1px solid var(--border);
+      border-radius: 6px; color: var(--text);
+      font-weight: 500;
+      transition: background .15s, border-color .15s;
+    }
+    .pub-links a:hover { background: var(--badge-bg); border-color: var(--accent); text-decoration: none; }
+    .new-tag { font-size: .72rem; font-weight: 700; color: #dc2626; margin-left: 4px; }
+
+    /* ── Other pubs ── */
+    .other-list { display: flex; flex-direction: column; gap: 12px; }
+    .other-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      font-size: .9rem;
+    }
+    .other-item .venue-tag {
+      font-size: .75rem; font-weight: 700;
+      color: var(--badge-fg); margin-right: 6px;
+    }
+    .other-item .authors { font-size: .82rem; color: var(--muted); margin-top: 2px; }
+    .other-item .authors strong { color: var(--text); }
+
+    /* ── Service ── */
+    .service-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .service-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      font-size: .9rem;
+    }
+    .service-box h4 { font-size: .82rem; font-weight: 700; color: var(--muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: .05em; }
+
+    /* ── About ── */
+    .about-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      font-size: .93rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    /* ── Footer ── */
+    footer {
+      margin-top: 60px;
+      border-top: 1px solid var(--border);
+      padding: 28px 24px;
+      text-align: center;
+      font-size: .82rem;
+      color: var(--muted);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .hero { grid-template-columns: 1fr; text-align: center; }
+      .hero-photo { margin: 0 auto; }
+      .social-links { justify-content: center; }
+      .pub-card { grid-template-columns: 1fr; }
+      .pub-thumb { width: 100%; height: 160px; }
+      .tl-item { grid-template-columns: 70px 1fr; }
+      .service-grid { grid-template-columns: 1fr; }
+      nav .links { gap: 14px; }
+    }
+  </style>
 </head>
 <body>
-<style type='text/css'>
-	body{
-		font-family:arial,"Microsoft YaHei",微软雅黑,宋体,Helvetica;
-		font-size:15px;
-	}
-	/*
-		div.content:
-			provide the content div in the middle
-	*/
-	body div.content{
-		/*width:1280px;*/
-		width:1000px;
-		margin:0 auto;
-		line-height:30px;
-	}
-	/*
-		header wrapper
-	*/
-	body div.header{
-		background-color:#2196F3;
-	}
-	body div.header > div.content{
-		padding:10px;
-	}
-	/*
-		footer1
-	*/
-	body div.footer1{
-		margin-top:30px;
-		background-color:#64B5F6;
-	}
-	/*
-		footer2
-	*/
-	body div.footer2{
-		background-color:#2196F3;
-	}
-	body div.footer > div.content{
-		padding:10px;
-	}
-	body div.footer1 > div.content{
-		padding:20px;
-		line-height:40px;
-		font-size:1.2em;
-	}
-	/*
-		utils css
-	*/
-	div.white-text{
-		color:white;
-	}
-	div.content > div.title{
-		padding:20px 0;
-		border-top:1px silver solid;
-		margin-top:30px;
-		font-size:2em;
-		font-weight:bold;
-	}
-	body a{
-		text-decoration:none;
-	}
-	div.content ul{
-		list-style: disc inside none;
-	}
-	div.content ol{
-		list-style: none inside none;
-	}
-	div.content li{
-		line-height:30px;
-		padding-bottom:5px;
-	}
-	div.content div.float-right{
-		float:right;
-	}
-</style>
-<!-- css for bio -->
-<style type="text/css">
-	/*
-		bio
-	*/
-	div.bio{
-		font-size:1.2em;
-	}
-	div.bio > div.left{
-		float:left;
-		width:300px;
-	}
-	div.bio > div.left > img.me{
-		max-height:220px;
-		margin:10px;
-		max-width:220px;
-		margin-top:20px;
-		margin-left:40px;
-	}
 
-	div.bio > div.right{
-		margin:0 0 0 310px;
-		min-height:300px;
-	}
-	div.bio > div.right > div.line.name{
-		padding:15px 0;
-		line-height:40px;
-	}
-	div.bio > div.right > div.name > span.name,div.bio > div.right > div.name > span.chineseName{
-		font-size:2em;
-		font-weight:bold;
-	}
-	div.bio > div.right > div.name > span.chinesesName{
-		font-family:"Microsoft YaHei",微软雅黑,宋体,Helvetica,arial;
-	}
-	div.bio > div.right > div.name > span.misc{
-		font-size:1.5em;
-		font-weight:bold;
-	}
-	div.bio > div.right > div.line.school{
-		padding:5px 0;
-	}
+<!-- ── Nav ── -->
+<nav>
+  <div class="inner">
+    <span class="brand">Fuxiao Liu</span>
+    <div class="links">
+      <a href="#experience">Experience</a>
+      <a href="#publications">Publications</a>
+      <a href="#other">More Papers</a>
+      <a href="#service">Service</a>
+    </div>
+  </div>
+</nav>
 
-	div.bio > div.right > div.line.office{
-		padding:5px 0;
-	}
+<div class="page">
 
-</style>
-<!-- quick link and intro -->
-<style type="text/css">
-div.quickLink{
-	min-height:70px;
-}
-div.quickLink > .block{
-	display:block;
-	float:left;
-	padding:10px 0px;
-	text-align:center;
-	border:1px silver solid;
-	border-radius:5px;
-	box-shadow:2px 2px 1px silver;
-	width:140px;
-	margin-right:50px;
-	margin-top:20px;
-	cursor:pointer;
-}
-</style>
-<!-- research and education -->
-<style type="text/css">
-div.research > ul > li > span.title,div.research > ul > li > div.time,
-div.education > ul > li > span.title,div.education > ul > li > div.time,
-div.pro > ul > li > span.title{
-	font-weight:bold;
-	font-size:1.1em;
-}
-div.research > ul > li > div.info,
-div.education > ul > li > div.info,
-div.pro > ul > li > div.info{
-	padding-left:20px;
-	word-wrap:break-word;
-}
-</style>
-<!-- publications -->
-<style type="text/css">
-div.publications > ol > li{
-	padding-bottom: 30px;
-}
-div.publications > ol > li > span.title{
-	font-weight:bold;
-	font-size:1.2em;
-}
-div.publications > ol > li > div.info{
-	padding-left:20px;
-	word-wrap:break-word;
-}
-div.publications > ol > li > div.info.italic{
-	font-style: italic;
-}
-div.publications div.imgblock{
-	float:left;
-	height:180px;
-	width:300px;
-	padding:10px;
-	margin-right:30px;
-	text-align: center;
-}
-div.publications div.imgblock > img{
-	max-width:100%;
-	max-height:100%;
-}
-img.press{
-	height:20px;
-}
-</style>
-<div class="header">
-	<div class="content white-text"><font face="Comic Sans MS">
-		Fuxiao Liu
-	</font></div>
+  <!-- ── Hero ── -->
+  <section class="hero">
+    <img class="hero-photo" src="resources/me.jpg" alt="Fuxiao Liu" />
+    <div class="hero-info">
+      <h1>Fuxiao Liu</h1>
+      <div class="zh">刘赋骁</div>
+      <p>Research Scientist at <strong><a href="https://www.nvidia.com/en-us/research/">NVIDIA</a></strong>.</p>
+      <p>Ph.D. from <strong>University of Maryland, College Park</strong> (May 2025),
+         advised by Abhinav Shrivastava, Yaser Yacoob, Tianyi Zhou, and Furong Huang.</p>
+      <p>My recent focus is on building <strong>customizable large models</strong> that follow humans' intent.</p>
+      <div class="social-links">
+        <a href="https://scholar.google.ca/citations?user=e0P54E4AAAAJ&hl=en" target="_blank">Google Scholar</a>
+        <a href="https://www.linkedin.com/in/fuxiao-liu-11b85a185/" target="_blank">LinkedIn</a>
+        <a href="https://github.com/FuxiaoLiu" target="_blank">GitHub</a>
+        <a href="https://twitter.com/FuxiaoL" target="_blank">Twitter</a>
+        <a href="https://www.instagram.com/calvinlfx/" target="_blank">Instagram</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Experience ── -->
+  <h2 class="section-title" id="experience">Experience</h2>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-date">Spring 2024</div>
+      <div class="tl-body">
+        <div class="org"><a href="https://nv-adlr.github.io">NVIDIA ADLR</a></div>
+        <div class="desc">With Guilin Liu and Zhiding Yu on building Large Multimodal Models.
+          <a href="https://huggingface.co/papers/2408.15998" target="_blank"><span class="badge">ICLR'25</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">Summer 2023</div>
+      <div class="tl-body">
+        <div class="org"><a href="https://www.google.com/search?q=Tencent+AI">Tencent AI</a></div>
+        <div class="desc">With Xiaoyang Wang, Jianshu Chen, Kaiqiang Song, Wenlin Yao on Visual Chart Understanding.
+          <a href="https://arxiv.org/abs/2311.10774" target="_blank"><span class="badge">NAACL'24</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">Spring 2023</div>
+      <div class="tl-body">
+        <div class="org"><a href="https://www.microsoft.com/en-us/research/">Microsoft Research</a></div>
+        <div class="desc">With <a href="https://www.microsoft.com/en-us/research/people/linjli/">Linjie Li</a>,
+          <a href="https://sites.google.com/site/kevinlin311tw/me">Kevin Lin</a>,
+          <a href="http://jianfengwang.me">Jianfeng Wang</a> on Robust Visual Instruction Tuning.
+          <a href="https://arxiv.org/abs/2306.14565" target="_blank"><span class="badge">ICLR'24</span></a>
+          <a href="https://arxiv.org/abs/2310.14566" target="_blank"><span class="badge">CVPR'24</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">Summer 2022</div>
+      <div class="tl-body">
+        <div class="org"><a href="https://research.adobe.com/research/document-intelligence/">Adobe Research</a></div>
+        <div class="desc">With <a href="https://research.adobe.com/person/chris-tensmeyer/">Chris Tensmeyer</a>,
+          <a href="https://scholar.google.com/citations?user=OV1Y3FUAAAAJ&hl=en">Hao Tan</a>,
+          <a href="https://www.cis.upenn.edu/~nenkova/">Ani Nenkova</a> on Visual Document Understanding.
+          <a href="https://arxiv.org/abs/2306.06306" target="_blank"><span class="badge">ICPRAI'24</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">Spring 2022</div>
+      <div class="tl-body">
+        <div class="org"><a href="https://www.cs.umd.edu/~abhinav/">UMIACS</a></div>
+        <div class="desc">With Abhinav Shrivastava on Fact Checking on Short Video.
+          <a href="https://arxiv.org/abs/2010.03743" target="_blank"><span class="badge">EACL'23</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">Spring 2021</div>
+      <div class="tl-body">
+        <div class="org"><a href="https://vislang.ai">UVa Vislang Lab</a></div>
+        <div class="desc">With <a href="https://profiles.rice.edu/faculty/vicente-ordonez-roman">Vicente Ordonez</a> on News Image Captioning.
+          <a href="https://arxiv.org/abs/2302.07919" target="_blank"><span class="badge">EMNLP'21</span></a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── Selected Publications ── -->
+  <h2 class="section-title" id="publications">Selected Publications</h2>
+  <div class="pub-list">
+
+    <div class="pub-card">
+      <img class="pub-thumb" src="resources/eagle.jpg" alt="EAGLE" />
+      <div>
+        <span class="pub-venue">ICLR 2025</span>
+        <div class="pub-title">EAGLE: Exploring The Design Space for Multimodal LLMs with Mixture of Encoders <span class="new-tag">New!</span></div>
+        <div class="pub-authors"><strong>Fuxiao Liu*</strong>, Min Shi*, Shihao Wang, Shijia Liao, Subhashree Radhakrishnan, De-An Huang, Hongxu Yin, Karan Sapra, Yaser Yacoob, Humphrey Shi, Bryan Catanzaro, Andrew Tao, Jan Kautz, Zhiding Yu*, Guilin Liu*</div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/pdf/2408.15998" target="_blank">Paper</a>
+          <a href="https://github.com/NVlabs/Eagle" target="_blank">Code</a>
+          <a href="https://github.com/FuxiaoLiu/fuxiaoliu.github.io/blob/main/citation/chart.txt" target="_blank">BibTeX</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card">
+      <img class="pub-thumb" src="resources/LRV_model.png" alt="LRV" />
+      <div>
+        <span class="pub-venue">ICLR 2024</span>
+        <div class="pub-title">Mitigating Hallucination in Large Multi-Modal Models via Robust Instruction Tuning <span class="new-tag">New!</span></div>
+        <div class="pub-authors"><strong>Fuxiao Liu*</strong>, Kevin Lin, Linjie Li, Jianfeng Wang, Yaser Yacoob, Lijuan Wang</div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/2306.14565" target="_blank">Paper</a>
+          <a href="https://github.com/FuxiaoLiu/LRV-Instruction" target="_blank">Code</a>
+          <a href="https://github.com/FuxiaoLiu/fuxiaoliu.github.io/blob/main/citation/chart.txt" target="_blank">BibTeX</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card">
+      <img class="pub-thumb" src="resources/hallusion_example.jpg" alt="HallusionBench" />
+      <div>
+        <span class="pub-venue">CVPR 2024</span>
+        <div class="pub-title">HallusionBench: You See What You Think? Or You Think What You See? <span class="new-tag">New!</span></div>
+        <div class="pub-authors"><strong>Fuxiao Liu*</strong>, <strong>Tianrui Guan*</strong>, Xiyang Wu, Ruiqi Xian, Xijun Wang, Zongxia Li, Lichang Chen, Yaser Yacoob, Dinesh Manocha, Tianyi Zhou</div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/2310.14566" target="_blank">Paper</a>
+          <a href="https://github.com/tianyi-lab/HallusionBench" target="_blank">Code</a>
+          <a href="https://github.com/FuxiaoLiu/fuxiaoliu.github.io/blob/main/citation/chart.txt" target="_blank">BibTeX</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card">
+      <img class="pub-thumb" src="resources/chart_example.jpg" alt="MMC" />
+      <div>
+        <span class="pub-venue">NAACL 2024</span>
+        <div class="pub-title">MMC: Advancing Multimodal Chart Understanding with Large-scale Instruction Tuning <span class="new-tag">New!</span></div>
+        <div class="pub-authors"><strong>Fuxiao Liu*</strong>, Xiaoyang Wang, Wenlin Yao, Jianshu Chen, Kaiqiang Song, Sangwoo Cho, Yaser Yacoob, Dong Yu</div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/2311.10774" target="_blank">Paper</a>
+          <a href="https://github.com/FuxiaoLiu/MMC" target="_blank">Code</a>
+          <a href="https://github.com/FuxiaoLiu/fuxiaoliu.github.io/blob/main/citation/chart.txt" target="_blank">BibTeX</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card">
+      <img class="pub-thumb" src="resources/Adobe2.png" alt="DocumentCLIP" />
+      <div>
+        <span class="pub-venue">ICPRAI 2023</span>
+        <div class="pub-title">DocumentCLIP: Linking Figures and Main Body Text in Reflowed Documents</div>
+        <div class="pub-authors"><strong>Fuxiao Liu*</strong>, Hao Tan, Chris Tensmeyer</div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/2306.06306" target="_blank">Paper</a>
+          <a href="https://github.com/FuxiaoLiu/DocumentCLIP" target="_blank">Code</a>
+          <a href="https://github.com/FuxiaoLiu/fuxiaoliu.github.io/blob/main/citation/chart.txt" target="_blank">BibTeX</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card">
+      <img class="pub-thumb" src="resources/twitter.png" alt="COVID-VTS" />
+      <div>
+        <span class="pub-venue">EACL 2023 · Oral</span>
+        <div class="pub-title">COVID-VTS: Fact Extraction and Verification on Short Video Platforms</div>
+        <div class="pub-authors"><strong>Fuxiao Liu*</strong>, Yaser Yacoob, Abhinav Shrivastava</div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/2302.07919" target="_blank">Paper</a>
+          <a href="https://github.com/FuxiaoLiu/Twitter-Video-dataset" target="_blank">Code</a>
+          <a href="https://github.com/FuxiaoLiu/fuxiaoliu.github.io/blob/main/citation/chart.txt" target="_blank">BibTeX</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card">
+      <img class="pub-thumb" src="resources/visualnews1.png" alt="VisualNews" />
+      <div>
+        <span class="pub-venue">EMNLP 2021 · Oral</span>
+        <div class="pub-title">Visual News: Benchmark and Challenges in News Image Captioning</div>
+        <div class="pub-authors"><strong>Fuxiao Liu*</strong>, Yinghan Wang, Tianlu Wang, Vicente Ordonez</div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/2010.03743" target="_blank">Paper</a>
+          <a href="https://github.com/FuxiaoLiu/VisualNews-Repository" target="_blank">Code</a>
+          <a href="https://www.vislang.ai/static/files/visualnews.txt" target="_blank">BibTeX</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── Other Publications ── -->
+  <h2 class="section-title" id="other">Other Publications</h2>
+  <div class="other-list">
+
+    <div class="other-item">
+      <span class="venue-tag">[NAACL 2025]</span>
+      <a href="https://arxiv.org/abs/2402.10340" target="_blank">Large language models and causal inference in collaboration: A comprehensive survey</a>
+      <div class="authors">Xiaoyu Liu, Paiheng Xu, Junda Wu, Yuhang Zhou, <strong>Fuxiao Liu*</strong>, Tianrui Guan, Haoliang Wang, Tong Yu, Julian McAuley, Wei Ai, Furong Huang</div>
+    </div>
+
+    <div class="other-item">
+      <span class="venue-tag">[NeurIPS 2024 Workshop]</span>
+      <a href="https://arxiv.org/abs/2402.10340" target="_blank">Towards understanding in-context learning with contrastive demonstrations and saliency maps</a>
+      <div class="authors"><strong>Fuxiao Liu*</strong>, Paiheng Xu, Zongxia Li</div>
+    </div>
+
+    <div class="other-item">
+      <span class="venue-tag">[LREC-COLING 2024]</span>
+      <a href="https://aclanthology.org/2024.lrec-tutorials.1/" target="_blank">From Multimodal LLM to Human-level AI: Modality, Instruction, Reasoning, Efficiency and Beyond</a>
+      <div class="authors">Fao Fei, Yuan Yao, Zhuosheng Zhang, <strong>Fuxiao Liu*</strong>, Ao Zhang, Tat-seng Chua</div>
+    </div>
+
+    <div class="other-item">
+      <span class="venue-tag">[ACL 2024]</span>
+      <a href="https://arxiv.org/abs/2401.10529" target="_blank">Mementos: A Comprehensive Benchmark for Multimodal Large Language Model Reasoning over Image Sequences</a>
+      <div class="authors">Xiyao Wang, Yuhang Zhou, Xiaoyu Liu, Hongjin Lu, Yuancheng Xu, <strong>Fuxiao Liu*</strong>, Mohit Bansal, Furong Huang</div>
+    </div>
+
+    <div class="other-item">
+      <span class="venue-tag">[IROS 2025]</span>
+      <a href="https://arxiv.org/abs/2402.10340" target="_blank">On the Safety Concerns of Deploying LLMs/VLMs in Robotics: Highlighting the Risks and Vulnerabilities</a>
+      <div class="authors">Xiyang Wu, Ruiqi Xian, Tianrui Guan, Jing Liang, Souradip Chakraborty, <strong>Fuxiao Liu*</strong>, Brian Sadler, Dinesh Manocha, Amrit Singh Bedi</div>
+    </div>
+
+    <div class="other-item">
+      <span class="venue-tag">[IROS 2024]</span>
+      <a href="https://arxiv.org/abs/2402.10340" target="_blank">SCP: Soft Conditional Prompt Learning for Aerial Video Action Recognition</a>
+      <div class="authors">Xijun Wang*, Ruiqi Xian, Tianrui Guan, <strong>Fuxiao Liu*</strong>, Dinesh Manocha</div>
+    </div>
+
+    <div class="other-item">
+      <span class="venue-tag">[ICMLA 2024]</span>
+      <a href="https://arxiv.org/abs/2402.10340" target="_blank">DeepFM-CRISPR: Enhancing CRISPR On-Target Prediction with Deep Learning</a>
+      <div class="authors">Condy Bao, <strong>Fuxiao Liu*</strong></div>
+    </div>
+
+    <div class="other-item">
+      <span class="venue-tag">[ACL 2025]</span>
+      <a href="https://arxiv.org/abs/2402.10340" target="_blank">Mosaic IT: Enhancing Instruction Tuning with Data Mosaics</a>
+      <div class="authors">Ming Li, Pei Chen, Chenguang Wang, Hongyu Zhao, Yijun Liang, Yupeng Hou, <strong>Fuxiao Liu*</strong>, Tianyi Zhou</div>
+    </div>
+
+    <div class="other-item">
+      <span class="venue-tag">[CVPR 2025 Workshop]</span>
+      <a href="https://openaccess.thecvf.com/content/CVPR2025W/TMM-OpenWorld/html/Li_A_Survey_of_State_of_the_Art_Large_Vision_Language_CVPRW_2025_paper.html" target="_blank">A Survey of State of the Art Large Vision Language Models: Benchmark Evaluations and Challenges</a>
+      <div class="authors">Zongxia Li, Xiyang Wu, Hongyang Du, <strong>Fuxiao Liu*</strong>, Huy Nghiem, Guangyao Shi</div>
+    </div>
+
+  </div>
+
+  <!-- ── Service ── -->
+  <h2 class="section-title" id="service">Service</h2>
+  <div class="service-grid">
+    <div class="service-box">
+      <h4>Conference Reviewer</h4>
+      AISTATS, CVPR, NAACL, ACL, IJCAI, ACMMM
+    </div>
+    <div class="service-box">
+      <h4>Journal Reviewer</h4>
+      JMIR
+    </div>
+  </div>
+
+  <!-- ── About ── -->
+  <h2 class="section-title">About</h2>
+  <div class="about-box">
+    I'm crazy about basketball since I was a little boy. I love it for its ultimate technical and mentality requirements.
+    No one in the world can become a master without great talent and extensive training.
+    My favorite basketball player is Kobe Bryant, who is noted for his rapid playing style, strong will, and his ambivalent relationship with the sport.
+    I am always immersed in his phenomenal performance in the game.
+  </div>
+
 </div>
 
-
-<div class="content bio">
-	<!-- bio -->
-	<div class="left">
-		<br/>
-		<img class='me' src="resources/me.jpg"></img>
-		<br/>
-	</div>
-	
-	
-	<div class="right">
-		<div class="line name">
-			<span class="name"><font face="Georgia">Fuxiao Liu (刘赋骁)</font></span>
-		</div>
-		<div class="line apartment"><font face="Comic Sans MS">
-		I am a Research Scientist at <a href="https://www.nvidia.com/en-us/research/">NVIDIA</a>. I obtained my Ph.D. from University of Maryland, College Park in May 2025, under the supervision of Abhinav Shrivastava, Yaser Yacoob, Tianyi Zhou and Furong Huang.
-		</font></div>
-	        <div class="line apartment"><font face="Comic Sans MS">
-		My recent focus is on building customizable large models that follow humans' intent.
-		</br>
-		<a href="https://scholar.google.ca/citations?user=e0P54E4AAAAJ&hl=en">Google Scholar</a>/<a href="https://www.linkedin.com/in/fuxiao-liu-11b85a185/"> LinkedIn</a>/<a href="https://github.com/FuxiaoLiu">Github</a>/<a href="https://twitter.com/FuxiaoL">Twitter</a>/<a href="https://www.instagram.com/calvinlfx/">Instagram</a>
-		</font></div>
-		
-	</div>
-</div>
-
-	
-<div class="content Experience">
-	<a name="Experience"></a>
-	<div class="title"><font face="Stencil Std">Experience</font></div>
-	<ul>
-		<li><font face="Comic Sans MS">
-			<span class="title"><b>[Spring 2024]</b> <a href="https://nv-adlr.github.io">Nvidia ADLR</a>, with Guilin Liu and Zhiding Yu on building Large Multimodal Models:<a href="https://huggingface.co/papers/2408.15998">[ICLR'25]</a>
-			</span>
-		</li></font>
-		<li><font face="Comic Sans MS">
-			<span class="title"><b>[Summer 2023]</b> <a href="https://www.google.com/search?client=safari&rls=en&q=Tencent+AI&ie=UTF-8&oe=UTF-8">Tencent AI</a>, with Xiaoyang Wang, Jianshu Chen, Kaiqiang Song, Wenlin Yao on Visual Chart Understanding: <a href="https://arxiv.org/abs/2311.10774">[NAACL'24]</a>.
-			</span>
-		</li></font>
-		<li><font face="Comic Sans MS">
-			<span class="title"><b>[Spring 2023]</b> <a href="https://www.microsoft.com/en-us/research/">Microsoft Research</a>, with <a href="https://www.microsoft.com/en-us/research/people/linjli/">Linjie Li</a>, 
-				<a href="https://sites.google.com/site/kevinlin311tw/me">Kevin Lin</a>, <a href="http://jianfengwang.me">Jianfeng Wang</a> on Robust Visual instruction tunning: <a href="https://arxiv.org/abs/2306.14565">[ICLR'24]</a>,<a href="https://arxiv.org/abs/2310.14566">[CVPR'24]</a>.
-			</span>
-		</li></font>
-		<li><font face="Comic Sans MS">
-			<span class="title"><b>[Summer 2022]</b> <a href="https://research.adobe.com/research/document-intelligence/">Adobe Research</a>, with <a href="https://research.adobe.com/person/chris-tensmeyer/">Chris Tensmeyer</a>, 
-				<a href="https://scholar.google.com/citations?user=OV1Y3FUAAAAJ&hl=en">Hao Tan</a> and <a href="https://www.cis.upenn.edu/~nenkova/4">Ani Nenkova</a> on Visual document Understanding: <a href="https://arxiv.org/abs/2306.06306">[ICPRAI'24]</a>.
-			</span>
-		</li></font>
-		<li><font face="Comic Sans MS">
-			<span class="title"><b>[Spring 2022]</b> <a href="https://www.cs.umd.edu/~abhinav/">UMIACS</a>, with <a href="https://www.cs.umd.edu/~abhinav/">Abhinav Shrivastava</a> on Fact Checking on Short Video: <a href="https://arxiv.org/abs/2010.03743">[EACL'23]</a>.
-			</span>
-		</li></font>
-		<li><font face="Comic Sans MS">
-			<span class="title"><b>[Spring 2021]</b> <a href="https://vislang.ai">UVa Vislang Lab</a>, with <a href="https://profiles.rice.edu/faculty/vicente-ordonez-roman">Vicente Ordonez</a> on News Image Captioning: <a href="https://arxiv.org/abs/2302.07919">[EMNLP'21]</a>.
-			</span>
-		</li></font>
-		
-
-	</ul>
-</div>
-	
-<div class="content publications">
-	<a name="Publications&Preprints"></a>
-	<div class="title"><font face="Comic Sans MS">Selected Publications</font></div>
-	<ol><font face="Comic Sans MS">
-		<li>
-			<div class="imgblock"><img src="resources/eagle.jpg"></img></div>
-			<span class="title"><b><em style="color:red;">New!</em> EAGLE: Exploring The Design Space for Multimodal LLMs with Mixture of Encoders</b>
-			</span>
-			<div class="info text-success italic""><span style="font-weight:bold">Fuxiao Liu*</span>, Min Shi*, Shihao Wang, Shijia Liao, Subhashree Radhakrishnan, De-An Huang, Hongxu Yin, Karan Sapra, Yaser Yacoob, Humphrey Shi, Bryan Catanzaro, Andrew Tao, Jan Kautz, Zhiding Yu*, Guilin Liu*</div>
-		        <div class="info"><b><em>ICLR 2025</em></b>						     
-				<a class="" href="https://arxiv.org/pdf/2408.15998" target="_blank">[paper]</a>
-				<a class="" href="https://github.com/NVlabs/Eagle" target="_blank">[code]</a>
-				<a class="" href="https://github.com/FuxiaoLiu/fuxiaoliu.github.io/blob/main/citation/chart.txt" target="_blank">[bibtex]</a>
-			</div>
-			<div style="clear:both"></div>
-		</li>  
-		</br>
-		<li>
-			<div class="imgblock"><img src="resources/LRV_model.png"></img></div>
-			<span class="title"><b><em style="color:red;">New!</em> Mitigating Hallucination in Large Multi-Modal Models via Robust Instruction Tuning</b>
-			</span>
-			<div class="info text-success italic""><span style="font-weight:bold">Fuxiao Liu*</span>, Kevin Lin, Linjie Li, Jianfeng Wang, Yaser Yacoob, Lijuan Wang</div>
-		        <div class="info"><b><em>ICLR 2024</em></b>						     
-				<a class="" href="https://arxiv.org/abs/2306.14565" target="_blank">[paper]</a>
-				<a class="" href="https://github.com/FuxiaoLiu/LRV-Instruction" target="_blank">[code]</a>
-				<a class="" href="https://github.com/FuxiaoLiu/fuxiaoliu.github.io/blob/main/citation/chart.txt" target="_blank">[bibtex]</a>
-			</div>
-			<div style="clear:both"></div>
-		</li>  
-		</br>
-		<li>
-			<div class="imgblock"><img src="resources/hallusion_example.jpg"></img></div>
-			<span class="title"><b><em style="color:red;">New!</em> HallusionBench: You See What You Think? Or You Think What You See? An Image-Context Reasoning Benchmark Challenging for GPT-4V(ision), LLaVA-1.5, and Other Multi-modality Models</b>
-			</span>
-			<div class="info text-success italic""><span style="font-weight:bold">Fuxiao Liu*</span>, <span style="font-weight:bold">Tianrui Guan*</span>, Xiyang Wu, Ruiqi Xian, Xijun Wang, Zongxia Li, Lichang Chen, Yaser Yacoob, Dinesh Manocha, Tianyi Zhou</div>
-		        <div class="info"><b><em>CVPR 2024</em></b>						     
-				<a class="" href="https://arxiv.org/abs/2310.14566" target="_blank">[paper]</a>
-				<a class="" href="https://github.com/tianyi-lab/HallusionBench" target="_blank">[code]</a>
-				<a class="" href="https://github.com/FuxiaoLiu/fuxiaoliu.github.io/blob/main/citation/chart.txt" target="_blank">[bibtex]</a>
-			</div>
-
-			<div style="clear:both"></div>
-		</li>         
-                </br>	
-		<li>
-			<div class="imgblock"><img src="resources/chart_example.jpg"></img></div>
-			<span class="title"><b><em style="color:red;">New!</em> MMC: Advancing Multimodal Chart Understanding with Large-scale Instruction Tuning</b>
-			</span>
-			<div class="info text-success italic""><span style="font-weight:bold">Fuxiao Liu*</span>, Xiaoyang Wang, Wenlin Yao, Jianshu Chen, Kaiqiang Song, Sangwoo Cho, Yaser Yacoob, Dong Yu</div>
-		        <div class="info"><b><em>NAACL 2024</em></b>						     
-				<a class="" href="https://arxiv.org/abs/2311.10774" target="_blank">[paper]</a>
-				<a class="" href="https://github.com/FuxiaoLiu/MMC" target="_blank">[code]</a>
-				<a class="" href="https://github.com/FuxiaoLiu/fuxiaoliu.github.io/blob/main/citation/chart.txt" target="_blank">[bibtex]</a>
-			</div>
-			<div style="clear:both"></div>
-		</li>  
-		 </br>
-		<li>
-			<div class="imgblock"><img src="resources/Adobe2.png"></img></div>
-			<span class="title"><b>DocumentCLIP: Linking Figures and Main Body Text in Reflowed Documents</b>
-			</span>
-			<div class="info text-success italic""><span style="font-weight:bold">Fuxiao Liu*</span>, Hao Tan, Chris Tensmeyer</div>
-		        <div class="info"><b><em>ICPRAI 2023</em></b>						     
-				<a class="" href="https://arxiv.org/abs/2306.06306" target="_blank">[paper]</a>
-				<a class="" href="https://github.com/FuxiaoLiu/DocumentCLIP" target="_blank">[code]</a>
-				<a class="" href="https://github.com/FuxiaoLiu/fuxiaoliu.github.io/blob/main/citation/chart.txt" target="_blank">[bibtex]</a>
-			</div>
-			<div style="clear:both"></div>
-		</li>       
-                </br>			       
-		<li>
-			<div class="imgblock"><img src="resources/twitter.png"></img></div>
-			<span class="title"><b>COVID-VTS: Fact Extraction and Verification on Short Video Platforms</b>
-			</span>
-			<div class="info text-success italic""><span style="font-weight:bold">Fuxiao Liu*</span>, Yaser Yacoob, Abhinav Shrivastava</div>
-	
-		        <div class="info"><b><em>EACL 2023</em></b> <em style="color:red;">(~Oral presentation)</em>
-				<a class="" href="https://arxiv.org/abs/2302.07919" target="_blank">[paper]</a>
-				<a class="" href="https://github.com/FuxiaoLiu/Twitter-Video-dataset" target="_blank">[code]</a>
-				<a class="" href="https://github.com/FuxiaoLiu/fuxiaoliu.github.io/blob/main/citation/chart.txt" target="_blank">[bibtex]</a>
-			</div>
-		
-			<div style="clear:both"></div>
-		</li>
-		</br>
-		<li>
-			<div class="imgblock"><img src="resources/visualnews1.png"></img></div>
-			<span class="title"><b>Visual News: Benchmark and Challenges in News Image Captioning</b>
-			</span>   
-			<div class="info text-success italic""><span style="font-weight:bold">Fuxiao Liu*</span>, Yinghan Wang, Tianlu Wang, Vicente Ordonez</div>
-	
-		        <div class="info"><b><em>EMNLP 2021</em></b> <em style="color:red;">(~Oral presentation)</em>
-				<a class="" href="https://arxiv.org/abs/2010.03743" target="_blank">[paper]</a>
-				<a class="" href="https://github.com/FuxiaoLiu/VisualNews-Repository" target="_blank">[code]</a>
-				<a class="" href="https://www.vislang.ai/static/files/visualnews.txt" target="_blank">[bibtex]</a>
-			</div>
-			<div style="clear:both"></div>
-		</li>
-		</br>
-
-	</font></ol>
-</div>
-
-
-<div class="content Arxiv">
-	<a name="Other Publications"></a>
-	<div class="title"><font face="Stencil Std">Other Publications</font></div>
-	<ul>
-		<li><font face="Comic Sans MS">
-			<span class="title"><b>[NAACL 2025]</b> <a href="https://arxiv.org/abs/2402.10340">Large language models and causal inference in collaboration: A comprehensive survey</a>.
-			</span>
-		</li></font>
-		<div class="info text-success italic"">Xiaoyu Liu, Paiheng Xu, Junda Wu, Yuhang Zhou <span style="font-weight:bold">Fuxiao Liu*</span>, Tianrui Guan, Haoliang Wang, Tong Yu, Julian McAuley, Wei Ai, Furong Huang</div>
-	</ul>
-	<ul>
-		<li><font face="Comic Sans MS">
-			<span class="title"><b>[NeurIPS 2024 Workshop]</b> <a href="https://arxiv.org/abs/2402.10340">Towards understanding in-context learning with contrastive demonstrations and saliency maps</a>.
-			</span>
-		</li></font>
-		<div class="info text-success italic""><span style="font-weight:bold">Fuxiao Liu*</span>, Paiheng Xu, Zongxia Li</div>
-	</ul>
-	<ul>
-		<li><font face="Comic Sans MS">
-			<span class="title"><b>[LREC-COLING 2024]</b> <a href="https://aclanthology.org/2024.lrec-tutorials.1/">From Multimodal LLM to Human-level AI: Modality, Instruction, Reasoning, Efficiency and Beyond</a>.
-			</span>
-		</li></font>
-		<div class="info text-success italic"">Fao Fei, Yuan Yao, Zhuosheng Zhang, <span style="font-weight:bold">Fuxiao Liu*</span>, Ao Zhang, Tat-seng Chua</div>
-	</ul>
-	<ul>
-		<li><font face="Comic Sans MS">
-			<span class="title"><b>[ACL 2024]</b> <a href="https://arxiv.org/abs/2401.10529">Mementos: A Comprehensive Benchmark for Multimodal Large Language Model Reasoning over Image Sequences</a>.
-			</span>
-		</li></font>
-		<div class="info text-success italic"">Xiyao Wang, Yuhang Zhou, Xiaoyu Liu, Hongjin Lu, Yuancheng Xu, <span style="font-weight:bold">Fuxiao Liu*</span>, Mohit Bansal, Furong Huang</div>
-	</ul>
-	<ul>
-		<li><font face="Comic Sans MS">
-			<span class="title"><b>[IROS 2025]</b> <a href="https://arxiv.org/abs/2402.10340">On the Safety Concerns of Deploying LLMs/VLMs in Robotics: Highlighting the Risks and Vulnerabilities</a>.
-			</span>
-		</li></font>
-		<div class="info text-success italic"">Xiyang Wu, Ruiqi Xian, Tianrui Guan, Jing Liang, Souradip Chakraborty, <span style="font-weight:bold">Fuxiao Liu*</span>, Brian Sadler, Dinesh Manocha, Amrit Singh Bedi</div>
-	</ul>
-	<ul>
-		<li><font face="Comic Sans MS">
-			<span class="title"><b>[IROS 2024]</b> <a href="https://arxiv.org/abs/2402.10340">SCP: Soft Conditional Prompt Learning for Aerial Video Action Recognition</a>.
-			</span>
-		</li></font>
-		<div class="info text-success italic"">Xijun Wang*, Ruiqi Xian, Tianrui Guan, <span style="font-weight:bold">Fuxiao Liu*</span>,Dinesh Manocha</div>
-	</ul>
-	<ul>
-		<li><font face="Comic Sans MS">
-			<span class="title"><b>[ICMLA 2024]</b> <a href="https://arxiv.org/abs/2402.10340">DeepFM-CRISPR: Enhancing CRISPR On-Target Prediction with Deep Learning</a>.
-			</span>
-		</li></font>
-		<div class="info text-success italic"">Condy Bao, <span style="font-weight:bold">Fuxiao Liu*</span></div>
-	</ul>
-	<ul>
-		<li><font face="Comic Sans MS">
-			<span class="title"><b>[ACL 2025]</b> <a href="https://arxiv.org/abs/2402.10340">Mosaic IT: Enhancing Instruction Tuning with Data Mosaics</a>.
-			</span>
-		</li></font>
-		<div class="info text-success italic"">Ming Li, Pei Chen, Chenguang Wang, Hongyu Zhao, Yijun Liang, Yupeng Hou, <span style="font-weight:bold">Fuxiao Liu*</span>, Tianyi Zhou</div>
-	</ul>
-	<ul>
-		<li><font face="Comic Sans MS">
-			<span class="title"><b>[CVPR 2025 Workshop]</b> <a href="https://openaccess.thecvf.com/content/CVPR2025W/TMM-OpenWorld/html/Li_A_Survey_of_State_of_the_Art_Large_Vision_Language_CVPRW_2025_paper.html">A Survey of State of the Art Large Vision Language Models: Benchmark Evaluations and Challenges</a>.
-			</span>
-		</li></font>
-		<div class="info text-success italic"">Zongxia Li, Xiyang Wu, Hongyang Du, <span style="font-weight:bold">Fuxiao Liu*</span>, Huy Nghiem, Guangyao Shi</div>
-	</ul>
-</div>
-
-
-										      
-<div class="content More">
-	
-	<div class="title"><font face="Comic Sans MS">Service</font></div>
-	<ol><font face="Comic Sans MS">
-		Conference Reviewer: AISTATS,CVPR,NAACL,ACL,IJCAI,ACMMM 
-		</br>
-		Journal Reviewer: JMIR
-	</font></ol>
-</div>
-										      
-<div class="content More">
-	
-	<div class="title"><font face="Comic Sans MS">More About Myself</font></div>
-	<ol><font face="Comic Sans MS">
-		I'm crazy about basketball since I was a little boy. I love it for its ultimate technical and mentality requirements. 
-	        No one in the world can become a master without great talent and extensive training. 
-	        My favorite basketball player is Kobe Bryant, who is noted for his rapid playing style, strong will, and his ambivalent relationship with the sport. 
-	        I am always immersed in his phenomenal performance in the game.
-	</font></ol>
-</div>	
-
-<div class="footer footer1">
-	<div class="content white-text"><font face="Comic Sans MS">
-		School of Computer Science <br/>
-		University of Maryland, College Park
-	</font></div>
-</div>
+<!-- ── Footer ── -->
+<footer>
+  School of Computer Science · University of Maryland, College Park
+</footer>
 
 </body>
-
 </html>
