@@ -7,7 +7,7 @@
   <meta name="description" content="Fuxiao Liu – Research Scientist at NVIDIA, PhD from UMD" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:wght@700&display=swap" rel="stylesheet" />
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-156016426-1"></script>
   <script>
@@ -23,24 +23,30 @@
     :root {
       --accent:   #2563eb;
       --accent2:  #1d4ed8;
+      --accent3:  #76b900; /* NVIDIA green */
       --bg:       #f8fafc;
       --surface:  #ffffff;
       --border:   #e2e8f0;
-      --text:     #1e293b;
-      --muted:    #64748b;
+      --text:     #0f172a;
+      --muted:    #475569;
       --badge-bg: #eff6ff;
       --badge-fg: #1d4ed8;
-      --radius:   12px;
-      --shadow:   0 1px 4px rgba(0,0,0,.07), 0 4px 16px rgba(0,0,0,.06);
-      --max-w:    860px;
+      --radius:   16px;
+      --shadow:   0 2px 8px rgba(15,23,42,.06), 0 8px 28px rgba(15,23,42,.08);
+      --shadow-lg:0 10px 40px rgba(37,99,235,.12);
+      --max-w:    1080px;
     }
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Inter', system-ui, sans-serif;
-      font-size: 15px;
-      line-height: 1.7;
+      font-size: 17px;
+      line-height: 1.75;
       color: var(--text);
-      background: var(--bg);
+      background:
+        radial-gradient(1100px 500px at 10% -10%, rgba(37,99,235,.08), transparent 60%),
+        radial-gradient(900px 400px at 100% 0%, rgba(118,185,0,.08), transparent 60%),
+        var(--bg);
+      background-attachment: fixed;
     }
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
@@ -49,208 +55,249 @@
     /* ── Nav ── */
     nav {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(255,255,255,.88);
-      backdrop-filter: blur(12px);
+      background: rgba(255,255,255,.85);
+      backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
     }
     nav .inner {
       max-width: var(--max-w); margin: 0 auto;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 24px; height: 52px;
+      padding: 0 32px; height: 64px;
     }
-    nav .brand { font-weight: 700; font-size: 1.05rem; color: var(--text); }
-    nav .links { display: flex; gap: 28px; }
-    nav .links a { font-size: .88rem; font-weight: 500; color: var(--muted); transition: color .2s; }
+    nav .brand { font-weight: 800; font-size: 1.2rem; color: var(--text); letter-spacing: -.01em; }
+    nav .links { display: flex; gap: 32px; }
+    nav .links a { font-size: .98rem; font-weight: 500; color: var(--muted); transition: color .2s; }
     nav .links a:hover { color: var(--accent); text-decoration: none; }
 
     /* ── Page wrapper ── */
-    .page { max-width: var(--max-w); margin: 0 auto; padding: 0 24px 80px; }
+    .page { max-width: var(--max-w); margin: 0 auto; padding: 0 32px 100px; }
 
     /* ── Hero / Bio ── */
     .hero {
       display: grid;
-      grid-template-columns: 180px 1fr;
-      gap: 36px;
-      align-items: start;
-      padding: 52px 0 40px;
+      grid-template-columns: 240px 1fr;
+      gap: 56px;
+      align-items: center;
+      padding: 80px 0 60px;
     }
     .hero-photo {
-      width: 160px; height: 160px;
+      width: 220px; height: 220px;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid var(--border);
-      box-shadow: var(--shadow);
+      border: 4px solid var(--surface);
+      box-shadow: var(--shadow-lg);
     }
-    .hero-info h1 { font-size: 2rem; font-weight: 700; line-height: 1.2; margin-bottom: 4px; }
-    .hero-info .zh { font-size: 1.1rem; color: var(--muted); margin-bottom: 14px; }
-    .hero-info p { color: var(--muted); font-size: .95rem; margin-bottom: 10px; }
-    .hero-info p strong { color: var(--text); }
-    .social-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .hero-info h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 6px;
+      letter-spacing: -.02em;
+      background: linear-gradient(135deg, #0f172a 0%, #2563eb 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-info .zh { font-size: 1.3rem; color: var(--muted); margin-bottom: 22px; font-weight: 500; }
+    .hero-info p { color: var(--muted); font-size: 1.05rem; margin-bottom: 12px; }
+    .hero-info p strong { color: var(--text); font-weight: 600; }
+    .social-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
     .social-links a {
-      display: inline-flex; align-items: center; gap: 5px;
-      padding: 5px 13px; border-radius: 20px;
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 18px; border-radius: 24px;
       border: 1px solid var(--border);
-      font-size: .82rem; font-weight: 500; color: var(--text);
+      font-size: .92rem; font-weight: 600; color: var(--text);
       background: var(--surface);
-      transition: border-color .2s, background .2s;
+      transition: all .2s;
     }
-    .social-links a:hover { border-color: var(--accent); background: var(--badge-bg); text-decoration: none; }
+    .social-links a:hover {
+      border-color: var(--accent);
+      background: var(--badge-bg);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(37,99,235,.15);
+      text-decoration: none;
+    }
+    .social-links a.scholar { background: linear-gradient(135deg, #4285f4, #1a73e8); color: #fff; border-color: transparent; }
+    .social-links a.scholar:hover { background: linear-gradient(135deg, #1a73e8, #1557b0); color: #fff; }
 
     /* ── Section heading ── */
     .section-title {
-      font-size: 1.25rem; font-weight: 700;
-      margin: 52px 0 22px;
-      padding-bottom: 10px;
-      border-bottom: 2px solid var(--accent);
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin: 64px 0 32px;
+      padding-bottom: 14px;
+      border-bottom: 3px solid var(--accent);
       color: var(--text);
+      letter-spacing: -.01em;
+      display: inline-block;
     }
-
-    /* ── Experience timeline ── */
-    .timeline { display: flex; flex-direction: column; gap: 0; }
-    .tl-item {
-      display: grid;
-      grid-template-columns: 90px 1fr;
-      gap: 0 20px;
-      position: relative;
-    }
-    .tl-item::before {
-      content: '';
-      position: absolute;
-      left: 90px; top: 22px; bottom: -8px;
-      width: 1px; background: var(--border);
-    }
-    .tl-item:last-child::before { display: none; }
-    .tl-date {
-      text-align: right; padding-top: 16px;
-      font-size: .78rem; font-weight: 600;
-      color: var(--muted); white-space: nowrap;
-    }
-    .tl-body {
-      padding: 16px 0 24px 20px;
-      border-left: none;
-      position: relative;
-    }
-    .tl-body::before {
-      content: '';
-      position: absolute; left: -4px; top: 22px;
-      width: 9px; height: 9px;
-      border-radius: 50%; background: var(--accent);
-      border: 2px solid var(--bg);
-    }
-    .tl-body .org { font-weight: 600; font-size: .95rem; }
-    .tl-body .desc { font-size: .9rem; color: var(--muted); margin-top: 2px; }
-    .tl-body .desc a { color: var(--accent); }
-    .badge {
-      display: inline-block; padding: 1px 8px; border-radius: 10px;
-      font-size: .75rem; font-weight: 600;
-      background: var(--badge-bg); color: var(--badge-fg);
-      margin-left: 6px; vertical-align: middle;
-    }
+    .section-wrap { display: block; }
 
     /* ── Publication cards ── */
-    .pub-list { display: flex; flex-direction: column; gap: 20px; }
+    .pub-list { display: flex; flex-direction: column; gap: 24px; }
     .pub-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 20px;
+      padding: 26px;
       box-shadow: var(--shadow);
       display: grid;
-      grid-template-columns: 160px 1fr;
-      gap: 20px;
+      grid-template-columns: 200px 1fr;
+      gap: 26px;
       align-items: start;
-      transition: box-shadow .2s, border-color .2s;
+      transition: all .25s;
     }
-    .pub-card:hover { box-shadow: 0 4px 20px rgba(37,99,235,.12); border-color: var(--accent); }
+    .pub-card:hover {
+      box-shadow: var(--shadow-lg);
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+    .pub-card.featured {
+      border: 2px solid transparent;
+      background:
+        linear-gradient(var(--surface), var(--surface)) padding-box,
+        linear-gradient(135deg, var(--accent3), var(--accent)) border-box;
+    }
     .pub-thumb {
-      width: 160px; height: 110px;
+      width: 200px; height: 138px;
       object-fit: cover;
-      border-radius: 8px;
+      border-radius: 10px;
       background: var(--border);
     }
+    .pub-thumb-placeholder {
+      width: 200px; height: 138px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 1.1rem;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      line-height: 1.3;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #76b900 100%);
+    }
+    .pub-thumb-placeholder.alt1 { background: linear-gradient(135deg, #1e3a8a, #2563eb, #76b900); }
+    .pub-thumb-placeholder.alt2 { background: linear-gradient(135deg, #064e3b, #047857, #76b900); }
     .pub-venue {
       display: inline-block;
-      font-size: .75rem; font-weight: 700;
-      padding: 2px 9px; border-radius: 10px;
+      font-size: .82rem; font-weight: 700;
+      padding: 4px 12px; border-radius: 12px;
       background: var(--badge-bg); color: var(--badge-fg);
-      margin-bottom: 6px;
+      margin-bottom: 10px;
+      letter-spacing: .02em;
     }
-    .pub-title { font-weight: 600; font-size: .97rem; line-height: 1.4; margin-bottom: 6px; }
-    .pub-authors { font-size: .83rem; color: var(--muted); margin-bottom: 8px; }
-    .pub-authors strong { color: var(--text); }
-    .pub-links { display: flex; gap: 8px; flex-wrap: wrap; }
+    .pub-venue.nv { background: rgba(118,185,0,.15); color: #4d7a00; }
+    .pub-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      line-height: 1.4;
+      margin-bottom: 10px;
+      color: var(--text);
+      letter-spacing: -.005em;
+    }
+    .pub-authors { font-size: .92rem; color: var(--muted); margin-bottom: 12px; line-height: 1.6; }
+    .pub-authors strong { color: var(--text); font-weight: 700; }
+    .pub-links { display: flex; gap: 10px; flex-wrap: wrap; }
     .pub-links a {
-      font-size: .78rem; padding: 3px 10px;
+      font-size: .85rem; padding: 6px 14px;
       border: 1px solid var(--border);
-      border-radius: 6px; color: var(--text);
-      font-weight: 500;
-      transition: background .15s, border-color .15s;
+      border-radius: 8px; color: var(--text);
+      font-weight: 600;
+      transition: all .15s;
     }
-    .pub-links a:hover { background: var(--badge-bg); border-color: var(--accent); text-decoration: none; }
-    .new-tag { font-size: .72rem; font-weight: 700; color: #dc2626; margin-left: 4px; }
+    .pub-links a:hover {
+      background: var(--badge-bg);
+      border-color: var(--accent);
+      color: var(--accent2);
+      text-decoration: none;
+    }
+    .new-tag {
+      font-size: .75rem; font-weight: 800;
+      color: #fff; background: #dc2626;
+      padding: 2px 8px; border-radius: 6px;
+      margin-left: 8px; vertical-align: middle;
+      letter-spacing: .03em;
+    }
+    .core-tag {
+      font-size: .72rem; font-weight: 800;
+      color: #fff; background: linear-gradient(135deg, #76b900, #4d7a00);
+      padding: 2px 8px; border-radius: 6px;
+      margin-left: 6px; vertical-align: middle;
+      letter-spacing: .03em;
+    }
 
     /* ── Other pubs ── */
-    .other-list { display: flex; flex-direction: column; gap: 12px; }
+    .other-list { display: flex; flex-direction: column; gap: 14px; }
     .other-item {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 14px 18px;
-      font-size: .9rem;
+      padding: 18px 22px;
+      font-size: 1rem;
+      transition: all .2s;
     }
+    .other-item:hover { border-color: var(--accent); box-shadow: var(--shadow); }
     .other-item .venue-tag {
-      font-size: .75rem; font-weight: 700;
-      color: var(--badge-fg); margin-right: 6px;
+      font-size: .82rem; font-weight: 700;
+      color: var(--badge-fg); margin-right: 8px;
     }
-    .other-item .authors { font-size: .82rem; color: var(--muted); margin-top: 2px; }
-    .other-item .authors strong { color: var(--text); }
+    .other-item .authors { font-size: .9rem; color: var(--muted); margin-top: 4px; }
+    .other-item .authors strong { color: var(--text); font-weight: 700; }
 
     /* ── Service ── */
     .service-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 16px;
     }
     .service-box {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 14px 18px;
-      font-size: .9rem;
+      padding: 20px 24px;
+      font-size: 1rem;
+      transition: all .2s;
     }
-    .service-box h4 { font-size: .82rem; font-weight: 700; color: var(--muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: .05em; }
+    .service-box:hover { border-color: var(--accent); box-shadow: var(--shadow); }
+    .service-box h4 {
+      font-size: .88rem; font-weight: 800; color: var(--accent2);
+      margin-bottom: 8px; text-transform: uppercase; letter-spacing: .08em;
+    }
 
     /* ── About ── */
     .about-box {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 20px 24px;
-      font-size: .93rem;
+      padding: 28px 32px;
+      font-size: 1.02rem;
       color: var(--muted);
       line-height: 1.8;
     }
 
     /* ── Footer ── */
     footer {
-      margin-top: 60px;
+      margin-top: 80px;
       border-top: 1px solid var(--border);
-      padding: 28px 24px;
+      padding: 36px 24px;
       text-align: center;
-      font-size: .82rem;
+      font-size: .9rem;
       color: var(--muted);
     }
 
     /* ── Responsive ── */
-    @media (max-width: 640px) {
-      .hero { grid-template-columns: 1fr; text-align: center; }
-      .hero-photo { margin: 0 auto; }
+    @media (max-width: 768px) {
+      body { font-size: 16px; }
+      .hero { grid-template-columns: 1fr; text-align: center; gap: 32px; padding: 48px 0 36px; }
+      .hero-photo { margin: 0 auto; width: 180px; height: 180px; }
+      .hero-info h1 { font-size: 2.2rem; }
       .social-links { justify-content: center; }
-      .pub-card { grid-template-columns: 1fr; }
-      .pub-thumb { width: 100%; height: 160px; }
-      .tl-item { grid-template-columns: 70px 1fr; }
+      .pub-card { grid-template-columns: 1fr; padding: 20px; }
+      .pub-thumb, .pub-thumb-placeholder { width: 100%; height: 180px; }
       .service-grid { grid-template-columns: 1fr; }
-      nav .links { gap: 14px; }
+      nav .links { gap: 18px; }
+      nav .inner { padding: 0 20px; }
+      .page { padding: 0 20px 80px; }
+      .section-title { font-size: 1.4rem; margin: 48px 0 24px; }
     }
   </style>
 </head>
@@ -261,7 +308,6 @@
   <div class="inner">
     <span class="brand">Fuxiao Liu</span>
     <div class="links">
-      <a href="#experience">Experience</a>
       <a href="#publications">Publications</a>
       <a href="#other">More Papers</a>
       <a href="#service">Service</a>
@@ -277,100 +323,69 @@
     <div class="hero-info">
       <h1>Fuxiao Liu</h1>
       <div class="zh">刘赋骁</div>
-      <p>Research Scientist at <strong><a href="https://www.nvidia.com/en-us/research/">NVIDIA</a></strong>.</p>
-      <p>Ph.D. from <strong>University of Maryland, College Park</strong> (May 2025),
-         advised by Abhinav Shrivastava, Yaser Yacoob, Tianyi Zhou, and Furong Huang.</p>
-      <p>My recent focus is on building <strong>customizable large models</strong> that follow humans' intent.</p>
+      <p>Research Scientist at <strong><a href="https://www.nvidia.com/en-us/research/">NVIDIA</a></strong>, working on the <strong>Nemotron</strong> family of foundation models.</p>
+      <p>Ph.D. from <strong>University of Maryland, College Park</strong> (May 2025), advised by Abhinav Shrivastava, Yaser Yacoob, Tianyi Zhou, and Furong Huang.</p>
+      <p>My recent focus is on building <strong>customizable, efficient, and open multimodal foundation models</strong>.</p>
       <div class="social-links">
-        <a href="https://scholar.google.ca/citations?user=e0P54E4AAAAJ&hl=en" target="_blank">Google Scholar</a>
+        <a class="scholar" href="https://scholar.google.ca/citations?user=e0P54E4AAAAJ&hl=en" target="_blank">📚 Google Scholar</a>
         <a href="https://www.linkedin.com/in/fuxiao-liu-11b85a185/" target="_blank">LinkedIn</a>
         <a href="https://github.com/FuxiaoLiu" target="_blank">GitHub</a>
         <a href="https://twitter.com/FuxiaoL" target="_blank">Twitter</a>
         <a href="https://www.instagram.com/calvinlfx/" target="_blank">Instagram</a>
+        <a href="mailto:fuxiaol@nvidia.com">Email</a>
       </div>
     </div>
   </section>
-
-  <!-- ── Experience ── -->
-  <h2 class="section-title" id="experience">Experience</h2>
-  <div class="timeline">
-
-    <div class="tl-item">
-      <div class="tl-date">Spring 2024</div>
-      <div class="tl-body">
-        <div class="org"><a href="https://nv-adlr.github.io">NVIDIA ADLR</a></div>
-        <div class="desc">With Guilin Liu and Zhiding Yu on building Large Multimodal Models.
-          <a href="https://huggingface.co/papers/2408.15998" target="_blank"><span class="badge">ICLR'25</span></a>
-        </div>
-      </div>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-date">Summer 2023</div>
-      <div class="tl-body">
-        <div class="org"><a href="https://www.google.com/search?q=Tencent+AI">Tencent AI</a></div>
-        <div class="desc">With Xiaoyang Wang, Jianshu Chen, Kaiqiang Song, Wenlin Yao on Visual Chart Understanding.
-          <a href="https://arxiv.org/abs/2311.10774" target="_blank"><span class="badge">NAACL'24</span></a>
-        </div>
-      </div>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-date">Spring 2023</div>
-      <div class="tl-body">
-        <div class="org"><a href="https://www.microsoft.com/en-us/research/">Microsoft Research</a></div>
-        <div class="desc">With <a href="https://www.microsoft.com/en-us/research/people/linjli/">Linjie Li</a>,
-          <a href="https://sites.google.com/site/kevinlin311tw/me">Kevin Lin</a>,
-          <a href="http://jianfengwang.me">Jianfeng Wang</a> on Robust Visual Instruction Tuning.
-          <a href="https://arxiv.org/abs/2306.14565" target="_blank"><span class="badge">ICLR'24</span></a>
-          <a href="https://arxiv.org/abs/2310.14566" target="_blank"><span class="badge">CVPR'24</span></a>
-        </div>
-      </div>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-date">Summer 2022</div>
-      <div class="tl-body">
-        <div class="org"><a href="https://research.adobe.com/research/document-intelligence/">Adobe Research</a></div>
-        <div class="desc">With <a href="https://research.adobe.com/person/chris-tensmeyer/">Chris Tensmeyer</a>,
-          <a href="https://scholar.google.com/citations?user=OV1Y3FUAAAAJ&hl=en">Hao Tan</a>,
-          <a href="https://www.cis.upenn.edu/~nenkova/">Ani Nenkova</a> on Visual Document Understanding.
-          <a href="https://arxiv.org/abs/2306.06306" target="_blank"><span class="badge">ICPRAI'24</span></a>
-        </div>
-      </div>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-date">Spring 2022</div>
-      <div class="tl-body">
-        <div class="org"><a href="https://www.cs.umd.edu/~abhinav/">UMIACS</a></div>
-        <div class="desc">With Abhinav Shrivastava on Fact Checking on Short Video.
-          <a href="https://arxiv.org/abs/2010.03743" target="_blank"><span class="badge">EACL'23</span></a>
-        </div>
-      </div>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-date">Spring 2021</div>
-      <div class="tl-body">
-        <div class="org"><a href="https://vislang.ai">UVa Vislang Lab</a></div>
-        <div class="desc">With <a href="https://profiles.rice.edu/faculty/vicente-ordonez-roman">Vicente Ordonez</a> on News Image Captioning.
-          <a href="https://arxiv.org/abs/2302.07919" target="_blank"><span class="badge">EMNLP'21</span></a>
-        </div>
-      </div>
-    </div>
-
-  </div>
 
   <!-- ── Selected Publications ── -->
   <h2 class="section-title" id="publications">Selected Publications</h2>
   <div class="pub-list">
 
+    <div class="pub-card featured">
+      <div class="pub-thumb-placeholder">NVIDIA<br/>Nemotron<br/>Nano 2 VL</div>
+      <div>
+        <span class="pub-venue nv">NVIDIA · 2025</span>
+        <div class="pub-title">NVIDIA Nemotron Nano V2 VL: Efficient Open Vision-Language Foundation Model <span class="new-tag">NEW</span><span class="core-tag">Core Author</span></div>
+        <div class="pub-authors">NVIDIA Nemotron Team (incl. <strong>Fuxiao Liu</strong>)</div>
+        <div class="pub-links">
+          <a href="https://research.nvidia.com/labs/adlr/" target="_blank">Project</a>
+          <a href="https://huggingface.co/nvidia" target="_blank">HuggingFace</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card featured">
+      <div class="pub-thumb-placeholder alt1">Nemotron 3<br/>Nano Omni</div>
+      <div>
+        <span class="pub-venue nv">NVIDIA · 2025</span>
+        <div class="pub-title">Nemotron 3 Nano Omni: Efficient and Open Multimodal Intelligence <span class="new-tag">NEW</span><span class="core-tag">Core Author</span></div>
+        <div class="pub-authors">NVIDIA Nemotron Team (incl. <strong>Fuxiao Liu</strong>)</div>
+        <div class="pub-links">
+          <a href="https://research.nvidia.com/labs/adlr/" target="_blank">Project</a>
+          <a href="https://huggingface.co/nvidia" target="_blank">HuggingFace</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-card featured">
+      <div class="pub-thumb-placeholder alt2">Nemotron-H<br/>Mamba ⨯ Transformer</div>
+      <div>
+        <span class="pub-venue nv">NVIDIA · 2025</span>
+        <div class="pub-title">Nemotron-H: A Family of Accurate and Efficient Hybrid Mamba–Transformer Models <span class="new-tag">NEW</span><span class="core-tag">Core Author</span></div>
+        <div class="pub-authors">NVIDIA Nemotron Team (incl. <strong>Fuxiao Liu</strong>)</div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/2504.03624" target="_blank">Paper</a>
+          <a href="https://research.nvidia.com/labs/adlr/" target="_blank">Project</a>
+          <a href="https://huggingface.co/nvidia" target="_blank">HuggingFace</a>
+        </div>
+      </div>
+    </div>
+
     <div class="pub-card">
       <img class="pub-thumb" src="resources/eagle.jpg" alt="EAGLE" />
       <div>
         <span class="pub-venue">ICLR 2025</span>
-        <div class="pub-title">EAGLE: Exploring The Design Space for Multimodal LLMs with Mixture of Encoders <span class="new-tag">New!</span></div>
+        <div class="pub-title">EAGLE: Exploring The Design Space for Multimodal LLMs with Mixture of Encoders</div>
         <div class="pub-authors"><strong>Fuxiao Liu*</strong>, Min Shi*, Shihao Wang, Shijia Liao, Subhashree Radhakrishnan, De-An Huang, Hongxu Yin, Karan Sapra, Yaser Yacoob, Humphrey Shi, Bryan Catanzaro, Andrew Tao, Jan Kautz, Zhiding Yu*, Guilin Liu*</div>
         <div class="pub-links">
           <a href="https://arxiv.org/pdf/2408.15998" target="_blank">Paper</a>
@@ -384,7 +399,7 @@
       <img class="pub-thumb" src="resources/LRV_model.png" alt="LRV" />
       <div>
         <span class="pub-venue">ICLR 2024</span>
-        <div class="pub-title">Mitigating Hallucination in Large Multi-Modal Models via Robust Instruction Tuning <span class="new-tag">New!</span></div>
+        <div class="pub-title">Mitigating Hallucination in Large Multi-Modal Models via Robust Instruction Tuning</div>
         <div class="pub-authors"><strong>Fuxiao Liu*</strong>, Kevin Lin, Linjie Li, Jianfeng Wang, Yaser Yacoob, Lijuan Wang</div>
         <div class="pub-links">
           <a href="https://arxiv.org/abs/2306.14565" target="_blank">Paper</a>
@@ -398,7 +413,7 @@
       <img class="pub-thumb" src="resources/hallusion_example.jpg" alt="HallusionBench" />
       <div>
         <span class="pub-venue">CVPR 2024</span>
-        <div class="pub-title">HallusionBench: You See What You Think? Or You Think What You See? <span class="new-tag">New!</span></div>
+        <div class="pub-title">HallusionBench: You See What You Think? Or You Think What You See?</div>
         <div class="pub-authors"><strong>Fuxiao Liu*</strong>, <strong>Tianrui Guan*</strong>, Xiyang Wu, Ruiqi Xian, Xijun Wang, Zongxia Li, Lichang Chen, Yaser Yacoob, Dinesh Manocha, Tianyi Zhou</div>
         <div class="pub-links">
           <a href="https://arxiv.org/abs/2310.14566" target="_blank">Paper</a>
@@ -412,7 +427,7 @@
       <img class="pub-thumb" src="resources/chart_example.jpg" alt="MMC" />
       <div>
         <span class="pub-venue">NAACL 2024</span>
-        <div class="pub-title">MMC: Advancing Multimodal Chart Understanding with Large-scale Instruction Tuning <span class="new-tag">New!</span></div>
+        <div class="pub-title">MMC: Advancing Multimodal Chart Understanding with Large-scale Instruction Tuning</div>
         <div class="pub-authors"><strong>Fuxiao Liu*</strong>, Xiaoyang Wang, Wenlin Yao, Jianshu Chen, Kaiqiang Song, Sangwoo Cho, Yaser Yacoob, Dong Yu</div>
         <div class="pub-links">
           <a href="https://arxiv.org/abs/2311.10774" target="_blank">Paper</a>
@@ -552,7 +567,7 @@
 
 <!-- ── Footer ── -->
 <footer>
-  School of Computer Science · University of Maryland, College Park
+  © 2026 Fuxiao Liu · Research Scientist at NVIDIA
 </footer>
 
 </body>
